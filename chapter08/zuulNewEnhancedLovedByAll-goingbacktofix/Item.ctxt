@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Item
+comment0.text=\r\n\ This\ class\ holds\ decription\ and\ weight\ of\ different\ items.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=name\ weight\ description
+comment1.target=Item(java.lang.String,\ int,\ java.lang.String)
+comment1.text=\r\n\ Creates\ an\ item.\ Sets\ the\ name\ and\ weight\ of\ item\ by\ passed\ paramaters.\r\n\ @param\ name\ \ \ The\ String\ name\ of\ the\ item.\r\n\ @param\ weight\ \ \ \ The\ int\ weight\ of\ the\ item.\ (measured\ in\ pounds)\r\n
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment2.text=\r\n\ Return\ String\ name\ of\ item.\r\n
+comment3.params=
+comment3.target=int\ getWeight()
+comment3.text=\r\n\ Return\ int\ weight\ of\ item.\r\n
+comment4.params=
+comment4.target=java.lang.String\ getDescription()
+numComments=5
