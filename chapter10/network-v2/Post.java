@@ -90,6 +90,7 @@ public class Post
         else {
             System.out.println("   " + comments.size() + " comment(s). Click here to view.");
         }
+
     }
     
     /**
@@ -101,7 +102,7 @@ public class Post
      * @return      A relative time string for the given time
      */
     
-    private String timeString(long time)
+    public String timeString(long time)
     {
         long current = System.currentTimeMillis();
         long pastMillis = current - time;      // time passed in milliseconds
