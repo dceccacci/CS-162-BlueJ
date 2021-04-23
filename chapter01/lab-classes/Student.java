@@ -8,11 +8,7 @@
  */
 public class Student extends Person
 {
-    // the student's full name
-    //private String name;  //
-    // the student ID
-    //private String id;    //
-    // the amount of credits for study taken so far
+
     private int credits;
 
     /**
@@ -21,25 +17,8 @@ public class Student extends Person
     public Student(String fullName, String studentID)
     {
         super(fullName, studentID);
-        /**
-        if(fullName.length() < 4){
-            System.out.println("Not enough letters in name");
-        }
-        if(studentID.length() < 3){
-            System.out.println("Not enough numbers in ID");
-        } */
-        //name = fullName;//
-        //id = studentID;//
         credits = 0;
     }
-
-    /**
-     * Return the full name of this student.
-     
-    public String getName()
-    {
-        return name;
-    }*/
 
     /**
      * Set a new name for this student.
@@ -48,14 +27,6 @@ public class Student extends Person
     {
         changeName(replacementName);
     }
-
-    /**
-     * Return the student ID of this student.
-     
-    public String getStudentID()
-    {
-        return id;
-    } */
 
     /**
      * Add some credit points to the student's accumulated credits.
@@ -72,28 +43,7 @@ public class Student extends Person
     {
         return credits;
     }
-
-    /**
-     * Return the login name of this student. The login name is a combination
-     * of the first four characters of the student's name and the first three
-     * characters of the student's ID number.
-     
-    public String getLoginName()
-    {
-        if (name.length() < 4){
-            return name + id.substring(0,3);
-        }
-        if (id.length() < 3){
-            return name.substring(0,4) + id;
-        }
-        if (id.length() < 3 && name.length() <4){
-            return name + id;
-        }
-        else{
-            return name.substring(0,4) + id.substring(0,3);
-        }
-    } */
-    
+   
     /**
      * Print the student's name and ID number to the output terminal.
      */ 
