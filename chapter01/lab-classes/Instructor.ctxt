@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Instructor
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Instructor\ here.\r\n\r\n\ @author\ (Devon\ Ceccacci)\r\n\ @version\ (April\ 2021)\r\n
+comment1.params=fullName\ id
+comment1.target=Instructor(java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Instructor\r\n
+comment2.params=department
+comment2.target=void\ setDepartment(java.lang.String)
+comment3.params=info
+comment3.target=void\ setContactInfo(java.lang.String)
+numComments=4
