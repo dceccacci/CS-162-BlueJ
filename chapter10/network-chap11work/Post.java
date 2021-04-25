@@ -61,11 +61,11 @@ public class Post
      * 
      * @return The post's creation time, as a system time value.
      */
-    public long getTimeStamp()
+    protected long getTimeStamp()
     {
         return timestamp;
     }
-
+    
     /**
      * Display the details of this post.
      * 
@@ -74,9 +74,7 @@ public class Post
      */
     public void display()
     {
-        System.out.println(username);
-        
-        /*
+        //System.out.println(username);
         System.out.print(timeString(timestamp));
         
         if(likes > 0) {
@@ -92,7 +90,7 @@ public class Post
         else {
             System.out.println("   " + comments.size() + " comment(s). Click here to view.");
         }
-        */
+        
 
     }
     
@@ -119,7 +117,7 @@ public class Post
         }
     }
     
-    public String getUserName()
+    protected String getUserName()
     {
         return username;
     }
