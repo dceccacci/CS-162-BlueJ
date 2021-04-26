@@ -25,6 +25,7 @@ public class Game
     private Stack<Room> movementTrack;
     private Player playerOne;
     private ArrayList<Room> allRooms = new ArrayList<Room>();
+    private TransporterRoom transporter;
     private Random rand = new Random();
     private ArrayList<Character> roamingCharacters = new ArrayList<Character>();
     
@@ -54,7 +55,7 @@ public class Game
         lab = new Room("in a computing lab", "lab");
         office = new Room("in the computing admin office", "office");
         cellar = new Room("in a cellar. You see light in the distance", "cellar");
-        teleporter = new Room("a teleporter room. Looks very futuristic", "teleporter");
+        teleporter = new TransporterRoom("a teleporter room. Looks very futuristic", "teleporter");
         
         // add rooms to ArrayList Rooms
         allRooms.add(outside);
@@ -64,6 +65,8 @@ public class Game
         allRooms.add(office);
         allRooms.add(cellar);
         allRooms.add(teleporter);
+        
+        transporter = (TransporterRoom)teleporter;
         
         // initialise room exits
         outside.setExits("east", theater);
@@ -106,8 +109,15 @@ public class Game
         // locks doors: requires a key item to enter.
         cellar.toggleLockDoor();
         
-
         currentRoom = outside;  // start game outside
+        
+        // set the transporter room
+        setTransporter();
+    }
+    
+    private void setTransporter()
+    {
+        transporter.setRoomList(allRooms);
     }
     
     /**
@@ -180,9 +190,15 @@ public class Game
         }
     }
     
+
     private Room getRandomRoom()
     {
         return allRooms.get(rand.nextInt(allRooms.size()));
+    }
+    
+    public ArrayList<Room> getAllRooms()
+    {
+        return allRooms;
     }
 
     /**
@@ -402,13 +418,12 @@ public class Game
         String direction = command.getSecondWord();
 
         // check to see if player is in teleporter room
-        if(playerOne.getCurrentRoom().getShortName().equals("teleporter"))
-        {
-            moveIntoRoom(getRandomRoom());
-            System.out.println("** The room around you seems to melt away **");
-            look();
-        }
-        else{
+        //if(playerOne.getCurrentRoom().getShortName().equals("teleporter"))
+        //{
+        //    moveIntoRoom(getRandomRoom());
+        //    System.out.println("** The room around you seems to melt away **");
+        //    look();
+        //}
             // Try to leave current room.
             Room nextRoom = playerOne.getCurrentRoom().getExit(direction);
             if (nextRoom == null) {
@@ -436,7 +451,6 @@ public class Game
             else{
                 toTired();
             }
-        }
     }
     
     /**

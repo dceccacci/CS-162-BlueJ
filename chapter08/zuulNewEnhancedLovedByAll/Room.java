@@ -40,6 +40,9 @@ public class Room
         this.shortName = shortName;
     }
     
+    /**
+     * returns the ArrayList of exits
+     */
     public ArrayList getAllExits()
     {
         ArrayList<Room> roomList = new ArrayList<Room>();
@@ -52,7 +55,7 @@ public class Room
     {
         return shortName;
     }
-
+    
     /**
      * Define an exit from this room.
      * @param direction The direction of the exit.

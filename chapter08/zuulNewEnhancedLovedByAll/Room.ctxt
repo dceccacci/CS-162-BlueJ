@@ -25,6 +25,7 @@ comment18.params=character
 comment18.target=void\ removeCharacter(Character)
 comment2.params=
 comment2.target=java.util.ArrayList\ getAllExits()
+comment2.text=\r\n\ returns\ the\ ArrayList\ of\ exits\r\n
 comment3.params=
 comment3.target=java.lang.String\ getShortName()
 comment4.params=direction\ neighbor
