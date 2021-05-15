@@ -17,16 +17,18 @@ public class Fox
     // The age at which a fox can start to breed.
     private static final int BREEDING_AGE = 15;
     // The age to which a fox can live.
-    private static final int MAX_AGE = 150; //Original 150
+    private static final int MAX_AGE = 150;
     // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.08; //.08
+    private static final double BREEDING_PROBABILITY = 0.08;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 9; //Original 9
+    private static final int RABBIT_FOOD_VALUE = 9;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
+    // Sets the maximum food level of the fox.
+    private static final int MAX_FOOD_LEVEL = 20;
     
     // Individual characteristics (instance fields).
 
@@ -165,7 +167,7 @@ public class Fox
                 Rabbit rabbit = (Rabbit) animal;
                 if(rabbit.isAlive()) { 
                     rabbit.setDead();
-                    foodLevel = RABBIT_FOOD_VALUE;
+                    increaseFoodLevel();
                     rabbitList.add(where);
                 }
             }
@@ -175,6 +177,20 @@ public class Fox
         }
         else{
             return rabbitList.get(rand.nextInt(rabbitList.size()));
+        }
+    }
+    
+    /**
+     * Increases the food level of the fox. Can not exceed the value of
+     * static final MAX_FOOD_LEVEL
+     */
+    private void increaseFoodLevel(){
+        int projectedFoodLevel = foodLevel + RABBIT_FOOD_VALUE;
+        if(projectedFoodLevel > MAX_FOOD_LEVEL){
+            foodLevel = MAX_FOOD_LEVEL;
+        }
+        else{
+            foodLevel = projectedFoodLevel;
         }
     }
     
