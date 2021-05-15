@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.ArrayList;
 
 /**
  * A simple model of a fox.
@@ -16,14 +17,14 @@ public class Fox
     // The age at which a fox can start to breed.
     private static final int BREEDING_AGE = 15;
     // The age to which a fox can live.
-    private static final int MAX_AGE = 150;
+    private static final int MAX_AGE = 150; //Original 150
     // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.08;
+    private static final double BREEDING_PROBABILITY = 0.08; //.08
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 9;
+    private static final int RABBIT_FOOD_VALUE = 9; //Original 9
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -156,6 +157,7 @@ public class Fox
     {
         List<Location> adjacent = field.adjacentLocations(location);
         Iterator<Location> it = adjacent.iterator();
+        ArrayList<Location> rabbitList = new ArrayList<Location>();
         while(it.hasNext()) {
             Location where = it.next();
             Object animal = field.getObjectAt(where);
@@ -164,11 +166,16 @@ public class Fox
                 if(rabbit.isAlive()) { 
                     rabbit.setDead();
                     foodLevel = RABBIT_FOOD_VALUE;
-                    return where;
+                    rabbitList.add(where);
                 }
             }
         }
-        return null;
+        if(rabbitList.isEmpty()){
+            return null;
+        }
+        else{
+            return rabbitList.get(rand.nextInt(rabbitList.size()));
+        }
     }
     
     /**
