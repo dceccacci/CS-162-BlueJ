@@ -156,6 +156,24 @@ public abstract class Animal
     }
     
     /**
+     * Check whether or not this rabbit is to give birth at this step.
+     * New births will be made into free adjacent locations.
+     * @param newRabbits A list to return newly born rabbits.
+     */
+    protected void giveBirth(List<Animal> newAnimal)
+    {
+        // New rabbits are born into adjacent locations.
+        // Get a list of adjacent free locations.
+        Field field = getField();
+        List<Location> free = field.getFreeAdjacentLocations(getLocation());
+        int births = breed();
+        for(int b = 0; b < births && free.size() > 0; b++) {
+            Location loc = free.remove(0);
+            newAnimal.add(getNewAnimal(field, loc));
+        }
+    }
+    
+    /**
      * Return the max litter size of the animal.
      * @return The max litter size of the animal.
      */
@@ -178,4 +196,10 @@ public abstract class Animal
      * @return The breeding probability of the animal.
      */
     abstract protected double getBreedingProbability();
+    
+    /**
+     * Return a new instance of an animal.
+     * @return A new instance of an animal.
+     */
+    abstract protected Animal getNewAnimal(Field field, Location loc);
 }

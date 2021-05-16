@@ -100,25 +100,9 @@ public class Human extends Animal
         return null;
     }
     
-    /**
-     * Check whether or not this human is to give birth at this step.
-     * New births will be made into free adjacent locations.
-     * @param newHuman A list to return newly born foxes.
-     */
-    private void giveBirth(List<Animal> newHuman)
-    {
-        // New Human are born into adjacent locations.
-        // Get a list of adjacent free locations.
-        Field field = getField();
-        List<Location> free = field.getFreeAdjacentLocations(getLocation());
-        int births = breed();
-        for(int b = 0; b < births && free.size() > 0; b++) {
-            Location loc = free.remove(0);
-            Human young = new Human(false, field, loc);
-            newHuman.add(young);
-        }
+    public Human getNewAnimal(Field field, Location loc){
+        Human young = new Human(false, field, loc);
+        return young;
     }
-    
-    
 
 }
