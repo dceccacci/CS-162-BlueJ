@@ -1,3 +1,4 @@
+import java.util.List;
 
 /**
  * Write a description of class Animal here.
@@ -5,7 +6,7 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Animal
+public abstract class Animal
 {
     // Whether the animal is alive or not.
     private boolean alive;
@@ -24,6 +25,8 @@ public class Animal
         this.field = field;
         setLocation(location);
     }
+    
+    public abstract void act(List<Animal> newAnimals);
     
     /**
      * Returns a boolean, true if alive, false if dead.
