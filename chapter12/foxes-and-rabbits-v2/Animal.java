@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Random;
 
 /**
  * A class representing shared characteristics of animals.
@@ -8,6 +9,8 @@ import java.util.List;
  */
 public abstract class Animal
 {
+    private static final Random rand = Randomizer.getRandom();
+    
     // Whether the animal is alive or not.
     private boolean alive;
     // The animal's field.
@@ -24,12 +27,22 @@ public abstract class Animal
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Animal(Field field, Location location)
+    public Animal(boolean randomAge, Field field, Location location)
     {
         age = 0;
         alive = true;
         this.field = field;
         setLocation(location);
+        if(randomAge) {
+            age = rand.nextInt(getMaxAge());
+        }
+    }
+    
+    /**
+     * @return The randomizer
+     */
+    protected Random getRand(){
+        return rand;
     }
     
     /**
@@ -61,6 +74,18 @@ public abstract class Animal
      */
     protected void increaseAge(int increaseBy){
         age = age + increaseBy;
+    }
+    
+    /**
+     * Increase the age.
+     * This could result in the rabbit's death.
+     */
+    protected void incrementAge()
+    {
+        age++;
+        if(getAge() > getMaxAge()) {
+            setDead();
+        }
     }
 
     /**
@@ -121,4 +146,10 @@ public abstract class Animal
      * @return The breeding age of this animal.
      */
     abstract protected int getBreedingAge();
+    
+    /**
+     * Return the maximum age of the animal.
+     * @return The maximum age of the animal.
+     */
+    abstract protected int getMaxAge();
 }
