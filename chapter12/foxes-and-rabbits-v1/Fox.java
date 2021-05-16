@@ -34,12 +34,6 @@ public class Fox extends Animal
 
     // The fox's age.
     private int age;
-    // Whether the fox is alive or not.
-    // private boolean alive;       DELETE
-    // The fox's position.
-    // private Location location;   DELETE
-    // The field occupied.
-    // private Field field;         DELETE
     // The fox's food level, which is increased by eating rabbits.
     private int foodLevel;
 
@@ -55,9 +49,6 @@ public class Fox extends Animal
     {
         super(field, location);
         age = 0;
-        //alive = true;             DELETE
-        //this.field = field;       DELETE
-        //setLocation(location);    DELETE
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
             foodLevel = rand.nextInt(RABBIT_FOOD_VALUE);
@@ -97,40 +88,6 @@ public class Fox extends Animal
             }
         }
     }
-
-    /**
-     * Check whether the fox is alive or not.
-     * @return True if the fox is still alive.
-     DELETE
-    public boolean isAlive()
-    {
-        return alive;
-    }
-    */
-
-    /**
-     * Return the fox's location.
-     * @return The fox's location.
-     DELETE
-    public Location getLocation()
-    {
-        return location;
-    }
-    */
-    
-    /**
-     * Place the fox at the new location in the given field.
-     * @param newLocation The fox's new location.
-     DELETE
-    private void setLocation(Location newLocation)
-    {
-        if(location != null) {
-            field.clear(location);
-        }
-        location = newLocation;
-        field.place(this, newLocation);
-    }
-    */
     
     /**
      * Increase the age. This could result in the fox's death.
@@ -237,19 +194,5 @@ public class Fox extends Animal
     {
         return age >= BREEDING_AGE;
     }
-
-    /**
-     * Indicate that the fox is no longer alive.
-     * It is removed from the field.
-     DELETE
-    private void setDead()
-    {
-        alive = false;
-        if(location != null) {
-            field.clear(location);
-            location = null;
-            field = null;
-        }
-    }
-    */
+    
 }

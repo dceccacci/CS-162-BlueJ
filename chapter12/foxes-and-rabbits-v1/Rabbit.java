@@ -27,12 +27,6 @@ public class Rabbit extends Animal
     
     // The rabbit's age.
     private int age;
-    // Whether the rabbit is alive or not.  DELETE
-    //private boolean alive;                DELETE
-    // The rabbit's position.               DELETE
-    //private Location location;            DELETE
-    // The field occupied.                  DELETE
-    //private Field field;                  DELETE
 
     /**
      * Create a new rabbit. A rabbit may be created with age
@@ -46,9 +40,6 @@ public class Rabbit extends Animal
     {
         super(field, location);
         age = 0;
-        //alive = true;             DELETE
-        //this.field = field;       DELETE
-        //setLocation(location);    DELETE
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
         }
@@ -75,55 +66,6 @@ public class Rabbit extends Animal
             }
         }
     }
-    
-    /**
-     * Check whether the rabbit is alive or not.
-     * @return true if the rabbit is still alive.
-     DELETE
-    public boolean isAlive()
-    {
-        return alive;
-    }
-    */
-    
-    /**
-     * Indicate that the rabbit is no longer alive.
-     * It is removed from the field.
-     DELETE
-    public void setDead()
-    {
-        alive = false;
-        if(location != null) {
-            field.clear(location);
-            location = null;
-            field = null;
-        }
-    }
-    */
-    
-    /**
-     * Return the rabbit's location.
-     * @return The rabbit's location.
-     DELETE
-    public Location getLocation()
-    {
-        return location;
-    }
-    */
-    
-    /**
-     * Place the rabbit at the new location in the given field.
-     * @param newLocation The rabbit's new location.
-     DELETE
-    private void setLocation(Location newLocation)
-    {
-        if(location != null) {
-            field.clear(location);
-        }
-        location = newLocation;
-        field.place(this, newLocation);
-    }
-    */
 
     /**
      * Increase the age.
