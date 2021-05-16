@@ -142,6 +142,26 @@ public abstract class Animal
     }
     
     /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     * @return The number of births (may be zero).
+     */
+    protected int breed()
+    {
+        int births = 0;
+        if(canBreed() && getRand().nextDouble() <= getBreedingProbability()) {
+            births = getRand().nextInt(getMaxLitter()) + 1;
+        }
+        return births;
+    }
+    
+    /**
+     * Return the max litter size of the animal.
+     * @return The max litter size of the animal.
+     */
+    abstract protected int getMaxLitter();
+    
+    /**
      * Return the breeding age of this animal.
      * @return The breeding age of this animal.
      */
@@ -152,4 +172,10 @@ public abstract class Animal
      * @return The maximum age of the animal.
      */
     abstract protected int getMaxAge();
+    
+    /**
+     * Return the breeding probability of the animal.
+     * @return The breeding probability of the animal.
+     */
+    abstract protected double getBreedingProbability();
 }
