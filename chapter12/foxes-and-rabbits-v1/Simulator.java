@@ -86,7 +86,7 @@ public class Simulator
     {
         for(int step=1; step <= numSteps && view.isViable(field); step++) {
             simulateOneStep();
-            delay(10);   // uncomment this to run more slowly
+            delay(20);   // uncomment this to run more slowly
         }
     }
     
@@ -125,7 +125,42 @@ public class Simulator
         foxes.addAll(newFoxes);
 
         view.showStatus(step, field);
+        // testDOA(newFoxes, newRabbits); // work in progress
     }
+    
+    /**
+     * Test to see there is no animal(dead or alive) in the field that is not in 
+     * the Fox or Rabbit lists.
+     * WORK IN PROGRESS
+    
+    public void testDOA(List<Fox> newFoxes, List<Rabbit> newRabbits){
+        // Tests to see if the Field has the passed in animal yet
+        for(int i = 0; i < newFoxes.size(); i++){
+            Fox tempFox = newFoxes.get(i);
+            if(field.getObjectAt(tempFox.getLocation()) == null){
+                field.place(tempFox, tempFox.getLocation());
+            }
+        }
+        for(int i = 0; i < newRabbits.size(); i++){
+            Rabbit tempRabbit = newRabbits.get(i);
+            if(field.getObjectAt(tempRabbit.getLocation()) == null){
+                field.place(tempRabbit, tempRabbit.getLocation());
+            }
+        }
+        
+        // Tests to see if the Field has an animal not on the list yet
+        List<Object> fieldAnimals = new ArrayList<>(); 
+        for(int row = 0; row < field.getDepth(); row++){
+            for(int col = 0; col < field.getWidth(); col++){
+                Object tempAnimal = field.getObjectAt(row, col);
+                if(tempAnimal != null){     //if an animal is in the spot
+                    tempAnimal.getLocation();
+                    
+                }
+            }
+        }
+    }
+    */
         
     /**
      * Reset the simulation to a starting position.
@@ -152,12 +187,12 @@ public class Simulator
             for(int col = 0; col < field.getWidth(); col++) {
                 if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Fox fox = new Fox(true, field, location);
+                    Fox fox = new Fox(true, field, location); //true = random age
                     foxes.add(fox);
                 }
                 else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(true, field, location);
+                    Rabbit rabbit = new Rabbit(true, field, location); //
                     rabbits.add(rabbit);
                 }
                 // else leave the location empty.

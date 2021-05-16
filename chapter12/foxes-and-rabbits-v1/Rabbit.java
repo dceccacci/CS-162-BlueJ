@@ -8,7 +8,7 @@ import java.util.Random;
  * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29
  */
-public class Rabbit
+public class Rabbit extends Animal
 {
     // Characteristics shared by all rabbits (class variables).
 
@@ -27,12 +27,12 @@ public class Rabbit
     
     // The rabbit's age.
     private int age;
-    // Whether the rabbit is alive or not.
-    private boolean alive;
-    // The rabbit's position.
-    private Location location;
-    // The field occupied.
-    private Field field;
+    // Whether the rabbit is alive or not.  DELETE
+    //private boolean alive;                DELETE
+    // The rabbit's position.               DELETE
+    //private Location location;            DELETE
+    // The field occupied.                  DELETE
+    //private Field field;                  DELETE
 
     /**
      * Create a new rabbit. A rabbit may be created with age
@@ -44,10 +44,11 @@ public class Rabbit
      */
     public Rabbit(boolean randomAge, Field field, Location location)
     {
+        super(field, location);
         age = 0;
-        alive = true;
-        this.field = field;
-        setLocation(location);
+        //alive = true;             DELETE
+        //this.field = field;       DELETE
+        //setLocation(location);    DELETE
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
         }
@@ -61,10 +62,10 @@ public class Rabbit
     public void run(List<Rabbit> newRabbits)
     {
         incrementAge();
-        if(alive) {
+        if(isAlive()) {
             giveBirth(newRabbits);            
             // Try to move into a free location.
-            Location newLocation = field.freeAdjacentLocation(location);
+            Location newLocation = getField().freeAdjacentLocation(getLocation());
             if(newLocation != null) {
                 setLocation(newLocation);
             }
@@ -78,16 +79,17 @@ public class Rabbit
     /**
      * Check whether the rabbit is alive or not.
      * @return true if the rabbit is still alive.
-     */
+     DELETE
     public boolean isAlive()
     {
         return alive;
     }
+    */
     
     /**
      * Indicate that the rabbit is no longer alive.
      * It is removed from the field.
-     */
+     DELETE
     public void setDead()
     {
         alive = false;
@@ -97,20 +99,22 @@ public class Rabbit
             field = null;
         }
     }
+    */
     
     /**
      * Return the rabbit's location.
      * @return The rabbit's location.
-     */
+     DELETE
     public Location getLocation()
     {
         return location;
     }
+    */
     
     /**
      * Place the rabbit at the new location in the given field.
      * @param newLocation The rabbit's new location.
-     */
+     DELETE
     private void setLocation(Location newLocation)
     {
         if(location != null) {
@@ -119,6 +123,7 @@ public class Rabbit
         location = newLocation;
         field.place(this, newLocation);
     }
+    */
 
     /**
      * Increase the age.
@@ -141,11 +146,11 @@ public class Rabbit
     {
         // New rabbits are born into adjacent locations.
         // Get a list of adjacent free locations.
-        List<Location> free = field.getFreeAdjacentLocations(location);
+        List<Location> free = getField().getFreeAdjacentLocations(getLocation());
         int births = breed();
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Rabbit young = new Rabbit(false, field, loc);
+            Rabbit young = new Rabbit(false, getField(), loc);
             newRabbits.add(young);
         }
     }
