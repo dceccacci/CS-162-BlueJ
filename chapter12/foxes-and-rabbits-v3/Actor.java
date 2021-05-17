@@ -19,14 +19,4 @@ public interface Actor
      * @return true if still active, false if not.
      */
     boolean isActive();
-    
-    /**
-     * Make this animal act - that is: make it do
-     * whatever it wants/needs to do.
-     * @param newAnimals A list to receive newly born animals.
-     
-    abstract protected void act(List<Actor> newActors);
-    
-    abstract protected boolean isActive();
-    */
 }
