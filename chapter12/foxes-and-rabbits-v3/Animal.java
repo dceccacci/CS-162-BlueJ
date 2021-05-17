@@ -21,6 +21,7 @@ public abstract class Animal implements Actor
     // The animals breeding age
     private int age;
     
+    
     /**
      * Create a new animal at location in field.
      * 
@@ -44,14 +45,6 @@ public abstract class Animal implements Actor
     protected Random getRand(){
         return rand;
     }
-    
-    /**
-     * Make this animal act - that is: make it do
-     * whatever it wants/needs to do.
-     * @param newAnimals A list to receive newly born animals.
-     
-    protected abstract void act(List<Animal> newAnimals);
-    */
 
     /**
      * Check whether the animal is alive or not.
@@ -173,6 +166,12 @@ public abstract class Animal implements Actor
             newAnimal.add(getNewAnimal(field, loc));
         }
     }
+    
+    /**
+     * Return the food value animal.
+     * @return The food value the animal.
+     */
+    abstract protected int getFoodValue();
     
     /**
      * Return the max litter size of the animal.

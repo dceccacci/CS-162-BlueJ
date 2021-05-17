@@ -20,6 +20,8 @@ public class Rabbit extends Animal
     private static final double BREEDING_PROBABILITY = 0.12;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
+    // Food Value of Rabbits
+    private static final int FOOD_VALUE = 9;
     
     // Individual characteristics (instance fields).
     
@@ -57,6 +59,10 @@ public class Rabbit extends Animal
                 setDead();
             }
         }
+    }
+    
+    public int getFoodValue(){
+        return FOOD_VALUE;
     }
     
     /**

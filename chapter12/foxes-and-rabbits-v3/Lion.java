@@ -2,66 +2,88 @@ import java.util.List;
 import java.util.Iterator;
 
 /**
- * This is the Animal "human". The most deadliest animal of all.
- * Human ages, moves, and kills.
+ * This is the Animal "lion". The most deadliest animal of all.
+ * Lion ages, moves, and kills.
  *
  * @author (Devon Ceccacci)
  * @version (May-16-2021)
  */
-public class Human extends Animal
+public class Lion extends Animal
 {
-    // The age at which a human can start to breed.
+    // The age at which a lion can start to breed.
     private static final int BREEDING_AGE = 100;
-    // The age to which a human can live.
+    // The age to which a lion can live.
     private static final int MAX_AGE = 400;
-    // The likelihood of a human breeding.
+    // The likelihood of a lion breeding.
     private static final double BREEDING_PROBABILITY = 0.0045;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 1;
+    
+    // The food value
+    private static final int FOOD_VALUE = 25;
+    
 
+    
+    // Individual characteristics (instance fields).
+    // The lion's food level, which is increased by eating rabbits, foxs.
+    private int foodLevel;
     /**
-     * Constructor for objects of class Human
+     * Constructor for objects of class Lion
      */
-    public Human(boolean randomAge, Field field, Location location)
+    public Lion(boolean randomAge, Field field, Location location)
     {
         super(randomAge, field, location);
+        if(randomAge) {
+            foodLevel = getRand().nextInt(getFoodValue());
+        }
+        else {
+            foodLevel = getFoodValue();
+        }
     }
     
     /**
-     * @return the max litter size of the human.
+     * @returns food value
+     */
+    public int getFoodValue(){
+        return FOOD_VALUE;
+    }
+    
+    /**
+     * @return the max litter size of the lion.
      */
     public int getMaxLitter(){
         return MAX_LITTER_SIZE;
     }
     
     /**
-     * @return the breeding probability of the human.
+     * @return the breeding probability of the lion.
      */
     public double getBreedingProbability(){
         return BREEDING_PROBABILITY;
     }
     
     /**
-     * @return The age at which a human starts to breed.
+     * @return The age at which a lion starts to breed.
      */
     public int getBreedingAge(){
         return BREEDING_AGE;
     }
     
     /**
-     * @return The maximum age of the human.
+     * @return The maximum age of the lion.
      */
     public int getMaxAge(){
         return MAX_AGE;
     }
     
     /**
-     * Causes the human to act.
+     * Causes the lion to act.
      */
-    public void act(List<Actor> newHuman){
+    public void act(List<Actor> newLion){
         incrementAge();
+        incrementHunger();
         if(isActive()) {
-            giveBirth(newHuman);            
+            giveBirth(newLion);            
             // Move towards an animal to kill if found.
             Location newLocation = hunt();
             if(newLocation == null) { 
@@ -80,7 +102,18 @@ public class Human extends Animal
     }
     
     /**
-     * Human hunts for sport.
+     * Make this fox more hungry. This could result in the fox's death.
+     */
+    private void incrementHunger()
+    {
+        foodLevel--;
+        if(foodLevel <= 0) {
+            setDead();
+        }
+    }
+    
+    /**
+     * Lion hunts for sport.
      */
     private Location hunt(){
         Field field = getField();
@@ -88,11 +121,12 @@ public class Human extends Animal
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()){
             Location where = it.next();
-            Object animal = field.getObjectAt(where);
-            if(animal instanceof Rabbit || animal instanceof Fox){
-                Animal hunted = (Animal) animal;
+            Object actor = field.getObjectAt(where);
+            if(actor instanceof Rabbit || actor instanceof Fox){
+                Animal hunted = (Animal) actor;
                 if(hunted.isActive()){
                     hunted.setDead();
+                    foodLevel = foodLevel + hunted.getFoodValue();
                     return where;
                 }
             }
@@ -100,8 +134,8 @@ public class Human extends Animal
         return null;
     }
     
-    public Human getNewAnimal(Field field, Location loc){
-        Human young = new Human(false, field, loc);
+    public Lion getNewAnimal(Field field, Location loc){
+        Lion young = new Lion(false, field, loc);
         return young;
     }
 

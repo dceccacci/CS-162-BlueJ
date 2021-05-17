@@ -22,10 +22,12 @@ public class Simulator
     private static final double FOX_CREATION_PROBABILITY = 0.02;
     // The probability that a rabbit will be created in any given grid position.
     private static final double RABBIT_CREATION_PROBABILITY = 0.08; 
-    // The probability that a rabbit will be created in any given grid position.
-    private static final double HUMAN_CREATION_PROBABILITY = 0.001; 
+    // The probability that a lion will be created in any given grid position.
+    private static final double LION_CREATION_PROBABILITY = 0.001;
+    
+    private static final double HUNTER_CREATION_PROBABILITY = 0.001;
 
-    // List of animals in the field.
+    // List of actors in the field.
     private List<Actor> actors;
     // The current state of the field.
     private Field field;
@@ -63,7 +65,8 @@ public class Simulator
         view = new SimulatorView(depth, width);
         view.setColor(Rabbit.class, Color.ORANGE);
         view.setColor(Fox.class, Color.BLUE);
-        view.setColor(Human.class, Color.RED);
+        view.setColor(Lion.class, Color.RED);
+        view.setColor(Hunter.class, Color.BLACK);
         
         // Setup a valid starting point.
         reset();
@@ -137,6 +140,7 @@ public class Simulator
     {
         Random rand = Randomizer.getRandom();
         field.clear();
+        int maxHunters = 2;
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
                 if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
@@ -149,10 +153,18 @@ public class Simulator
                     Rabbit rabbit = new Rabbit(true, field, location);
                     actors.add(rabbit);
                 }
-                else if(rand.nextDouble() <= HUMAN_CREATION_PROBABILITY) {
+                else if(rand.nextDouble() <= LION_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Human human = new Human(true, field, location);
-                    actors.add(human);
+                    Lion lion = new Lion(true, field, location);
+                    actors.add(lion);
+                }
+                else if(rand.nextDouble() <= HUNTER_CREATION_PROBABILITY
+                        && maxHunters > 0){
+                    Location location = new Location(row, col);
+                    Hunter hunter = new Hunter(field, location);
+                    actors.add(hunter);
+                    maxHunters--;
+                    System.out.println("Added Hunter to " + row +":"+col);
                 }
                 // else leave the location empty.
             }

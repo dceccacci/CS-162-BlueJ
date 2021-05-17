@@ -19,4 +19,5 @@ public interface Actor
      * @return true if still active, false if not.
      */
     boolean isActive();
+
 }

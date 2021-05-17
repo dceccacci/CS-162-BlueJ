@@ -21,9 +21,9 @@ public class Fox extends Animal
     private static final double BREEDING_PROBABILITY = 0.08;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
-    // The food value of a single rabbit. In effect, this is the
-    // number of steps a fox can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 9;
+
+    // Food Value of foxes
+    private static final int FOOD_VALUE = 12;
     
     // Individual characteristics (instance fields).
     // The fox's food level, which is increased by eating rabbits.
@@ -41,11 +41,15 @@ public class Fox extends Animal
     {
         super(randomAge, field, location);
         if(randomAge) {
-            foodLevel = getRand().nextInt(RABBIT_FOOD_VALUE);
+            foodLevel = getRand().nextInt(getFoodValue());
         }
         else {
-            foodLevel = RABBIT_FOOD_VALUE;
+            foodLevel = getFoodValue();
         }
+    }
+    
+    public int getFoodValue(){
+        return FOOD_VALUE;
     }
     
     /**
@@ -106,7 +110,7 @@ public class Fox extends Animal
                 Rabbit rabbit = (Rabbit) animal;
                 if(rabbit.isActive()) { 
                     rabbit.setDead();
-                    foodLevel = RABBIT_FOOD_VALUE;
+                    foodLevel = rabbit.getFoodValue();
                     return where;
                 }
             }
