@@ -7,7 +7,7 @@ import java.util.Random;
  * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29 (2)
  */
-public abstract class Animal extends Actor
+public abstract class Animal implements Actor
 {
     private static final Random rand = Randomizer.getRandom();
     
@@ -57,7 +57,7 @@ public abstract class Animal extends Actor
      * Check whether the animal is alive or not.
      * @return true if the animal is still alive.
      */
-    protected boolean isActive()
+    public boolean isActive()
     {
         return alive;
     }
