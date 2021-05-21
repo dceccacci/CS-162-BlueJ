@@ -11,13 +11,13 @@ import java.util.Iterator;
 public class Lion extends Animal
 {
     // The age at which a lion can start to breed.
-    private static final int BREEDING_AGE = 100;
+    private static final int BREEDING_AGE = 25;
     // The age to which a lion can live.
-    private static final int MAX_AGE = 400;
+    private static final int MAX_AGE = 300;
     // The likelihood of a lion breeding.
-    private static final double BREEDING_PROBABILITY = 0.0045;
+    private static final double BREEDING_PROBABILITY = 0.02;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 1;
+    private static final int MAX_LITTER_SIZE = 2;
     
     // The food value
     private static final int FOOD_VALUE = 25;
@@ -137,6 +137,11 @@ public class Lion extends Animal
     public Lion getNewAnimal(Field field, Location loc){
         Lion young = new Lion(false, field, loc);
         return young;
+    }
+    
+    @Override
+    public String toString(){
+        return "Lion";
     }
 
 }

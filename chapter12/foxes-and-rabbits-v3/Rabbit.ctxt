@@ -23,4 +23,6 @@ comment7.target=int\ getMaxAge()
 comment7.text=\r\n\ @return\ The\ maximum\ age\ of\ the\ rabbit.\r\n
 comment8.params=field\ loc
 comment8.target=Rabbit\ getNewAnimal(Field,\ Location)
-numComments=9
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=10

@@ -164,7 +164,6 @@ public class Simulator
                     Hunter hunter = new Hunter(field, location);
                     actors.add(hunter);
                     maxHunters--;
-                    System.out.println("Added Hunter to " + row +":"+col);
                 }
                 // else leave the location empty.
             }

@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  * Write a description of class Hunter here.
@@ -9,6 +10,7 @@ import java.util.Iterator;
  */
 public class Hunter implements Actor
 {
+    private static final Random rand = Randomizer.getRandom();
     private static final int MAX_KILL = 20;
     
     private int killQuota;
@@ -54,25 +56,20 @@ public class Hunter implements Actor
     }
     
     public void act(List<Actor> newHunter){          
-        if(isActive()) {           
-            // Move towards an animal to kill if found.
-            Location newLocation = hunt();
-            if(newLocation == null) { 
-                // Nothing to hunt - try to move to a free location.
-                newLocation = getField().freeAdjacentLocation(getLocation());
-            }
-            // See if it was possible to move.
-            if(newLocation != null) {
-                setLocation(newLocation);
-            }
+        if(isActive()) {
+            hunt();
+            List<Location> allFreeLocations = field.getAllFreeLocation();
+            Location newLocation = allFreeLocations.get(rand.nextInt(allFreeLocations.size()));
+            setLocation(newLocation);
         }
     }
     
-        private Location hunt(){
+    private void hunt(){
         Field field = getField();
-        List<Location> adjacent = field.adjacentLocations(getLocation());
+        List<Location> adjacent = field.shuffleAdjacentFiveByFive(getLocation());
         Iterator<Location> it = adjacent.iterator();
-        while(it.hasNext()){
+        int ammo = rand.nextInt(4)+1;
+        while(it.hasNext() && ammo > 0){
             Location where = it.next();
             Object animal = field.getObjectAt(where);
             if(animal instanceof Rabbit || animal instanceof Fox || 
@@ -80,12 +77,10 @@ public class Hunter implements Actor
                 Animal hunted = (Animal) animal;
                 if(hunted.isActive()){
                     hunted.setDead();
-                    return where;
+                    ammo--;
                 }
             }
         }
-        return null;
     }
-    
 
 }

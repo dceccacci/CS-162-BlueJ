@@ -16,5 +16,5 @@ comment5.target=Location\ getLocation()
 comment6.params=newHunter
 comment6.target=void\ act(java.util.List)
 comment7.params=
-comment7.target=Location\ hunt()
+comment7.target=void\ hunt()
 numComments=8

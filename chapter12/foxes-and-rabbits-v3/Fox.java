@@ -150,5 +150,10 @@ public class Fox extends Animal
         Fox young = new Fox(false, field, loc);
         return young;
     }
+    
+    @Override
+    public String toString(){
+        return "Fox";
+    }
 
 }
