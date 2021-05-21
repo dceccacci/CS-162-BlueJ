@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Exercise61
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Exercise61\ here.\r\n\r\n\ @author\ (Devon\ Ceccacci)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=Exercise61()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Exercise61\r\n
+comment2.params=B
+comment2.target=int\ compareByName(Person)
+numComments=3
