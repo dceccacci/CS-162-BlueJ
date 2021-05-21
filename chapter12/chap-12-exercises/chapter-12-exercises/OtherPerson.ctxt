@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=OtherPerson
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ OtherPerson\ here.\r\n\r\n\ @author\ (Devon\ Ceccacci)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=name\ age
+comment1.target=OtherPerson(java.lang.String,\ int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ OtherPerson\r\n
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=int\ getAge()
+comment4.params=b
+comment4.target=int\ compareTo(OtherPerson)
+comment5.params=
+comment5.target=java.lang.String\ toString()
+numComments=6

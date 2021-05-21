@@ -32,7 +32,6 @@ public class Person implements Comparable<Person>
         return (this.name).compareTo(otherPerson.name);
     }
     
-    
 
 
 }
