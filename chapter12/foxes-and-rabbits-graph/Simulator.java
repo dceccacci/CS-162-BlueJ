@@ -68,6 +68,9 @@ public class Simulator
         view.setColor(Rabbit.class, Color.BLACK);
         view.setColor(Fox.class, Color.RED);
         views.add(view);
+        
+        view = new TextView();
+        views.add(view);
 
         // Setup a valid starting point.
         reset();
