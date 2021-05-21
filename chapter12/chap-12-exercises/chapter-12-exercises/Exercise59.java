@@ -88,7 +88,7 @@ public class Exercise59
         long linkedTime = linkedEnd - linkedStart;
         long arrayTime = arrayEnd - arrayStart;
         
-        System.out.println("=== Getting from lists ===");
+        System.out.println("--- Removing from lists ---");
         System.out.println("Linked: " + linkedTime);
         System.out.println("Array: " + arrayTime);
         
