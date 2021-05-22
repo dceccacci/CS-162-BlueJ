@@ -1,3 +1,6 @@
+import java.util.AbstractList;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Write a description of class Exercise73 here.
@@ -5,29 +8,30 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Exercise73
+public class Exercise73 extends AbstractList
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    List<Object> list;
 
     /**
      * Constructor for objects of class Exercise73
      */
     public Exercise73()
     {
-        // initialise instance variables
-        x = 0;
+        list = new ArrayList<Object>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+        list.add("E");
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    @Override
+    public Object get(int index){
+        return list.get(index);
+    }
+    
+    @Override
+    public int size(){
+        return list.size();
     }
 }
