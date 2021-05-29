@@ -52,6 +52,12 @@ public class AddressBookTextInterface
             else if(command.equals("help")){
                 help();
             }
+            else if(command.equals("get")){
+                get();
+            }
+            else if(command.equals("remove")){
+                remove();
+            }
             else{
                 // Do nothing.
             }
@@ -72,6 +78,32 @@ public class AddressBookTextInterface
         System.out.print("Address: ");
         String address = parser.readLine();
         book.addDetails(new ContactDetails(name, phone, address));
+    }
+    
+    /**
+     * Get Contacts Details.
+     */
+    private void get()
+    {
+        System.out.print("Name or Phone Number: ");
+        String toFind = parser.readLine();
+        ContactDetails found = book.getDetails(toFind);
+        if(found == null){
+            System.out.println("Could not Find: " + toFind);
+        }
+        else{
+            System.out.println(book.getDetails(toFind));
+        }
+    }
+    
+    /**
+     * Remove Contact.
+     */
+    private void remove()
+    {
+        System.out.print("Name or Phone Number to remove: ");
+        String toRemove = parser.readLine();
+        book.removeDetails(toRemove);
     }
     
     /**

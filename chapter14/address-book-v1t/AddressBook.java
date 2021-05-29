@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.HashMap;
 
 /**
  * A class to maintain an arbitrary number of contact details.
