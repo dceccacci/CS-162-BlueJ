@@ -56,9 +56,17 @@ public class AddressBook
      */
     public void addDetails(ContactDetails details)
     {
-        book.put(details.getName(), details);
-        book.put(details.getPhone(), details);
-        numberOfEntries++;
+        if(keyInUse(details.getName())){
+            System.out.println("Name \"" + "\"" + details.getName() + " is already in use.");
+        }
+        else if(keyInUse(details.getPhone())){
+            System.out.println("Phone Number \"" + "\"" + details.getPhone() + " is already in use.");
+        }
+        else{
+            book.put(details.getName(), details);
+            book.put(details.getPhone(), details);
+            numberOfEntries++;
+        }
     }
     
     /**
@@ -69,8 +77,13 @@ public class AddressBook
     public void changeDetails(String oldKey,
                               ContactDetails details)
     {
-        removeDetails(oldKey);
-        addDetails(details);
+        if(keyInUse(oldKey)){
+            removeDetails(oldKey);
+            addDetails(details);
+        }
+        else{
+            System.out.println("Could not find: " + oldKey);
+        }
     }
     
     /**
