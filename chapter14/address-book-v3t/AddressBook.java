@@ -71,7 +71,7 @@ public class AddressBook
      * @throws IllegalArgumentException If either argument is null.
      */
     public void changeDetails(String oldKey,
-                              ContactDetails details)
+                              ContactDetails details) throws NoMatchingDetailsException
     {
         if(details == null) {
             throw new IllegalArgumentException("Null details passed to changeDetails.");
@@ -133,17 +133,21 @@ public class AddressBook
      * @param key One of the keys of the entry to be removed.
      * @throws IllegalArgumentException If the key is null.
      */
-    public void removeDetails(String key)
+    public void removeDetails(String key) throws NoMatchingDetailsException
     {
         if(key == null){
             throw new IllegalArgumentException("Null key passed to removeDetails.");
         }
-        if(keyInUse(key)) {
+        
+        if(!keyInUse(key)){
+            throw new NoMatchingDetailsException(key);
+        }
+        //if(keyInUse(key)) {
             ContactDetails details = book.get(key);
             book.remove(details.getName());
             book.remove(details.getPhone());
             numberOfEntries--;
-        }
+        //}
     }
 
     /**

@@ -96,9 +96,13 @@ public class AddressBookTextInterface
      */
     private void remove()
     {
-        System.out.println("Type the key of the entry.");
-        String key = parser.readLine();
-        book.removeDetails(key);
+        try {
+            System.out.println("Type the key of the entry.");
+            String key = parser.readLine();
+            book.removeDetails(key);
+        } catch (NoMatchingDetailsException e){
+            System.out.println(e);
+        }
     }
     
     /**
