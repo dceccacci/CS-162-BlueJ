@@ -58,12 +58,34 @@ public class AddressBookTextInterface
             else if(command.equals("help")){
                 help();
             }
-            else{
+            else if(command.equals("change")){
+                change();
+            }
+            else {
                 // Do nothing.
             }
         } while(!(command.equals("quit")));
 
         System.out.println("Goodbye.");
+    }
+    
+    /**
+     * Change details of an entry
+     */
+    private void change() {
+        System.out.print("Type the key of the entry you wish to change.");
+        String oldKey = parser.readLine();
+        System.out.print("New Name: ");
+        String name = parser.readLine();
+        System.out.print("New Phone: ");
+        String phone = parser.readLine();
+        System.out.print("New Address: ");
+        String address = parser.readLine();
+        try {
+            book.changeDetails(oldKey, new ContactDetails(name, phone, address));
+        } catch (NoMatchingDetailsException e){
+            System.out.println(e);
+        }
     }
     
     /**
