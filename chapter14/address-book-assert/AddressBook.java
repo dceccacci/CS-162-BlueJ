@@ -78,6 +78,7 @@ public class AddressBook
     public void changeDetails(String oldKey,
                               ContactDetails details)
     {
+        int sizeBefore = book.values().size();
         if(details == null) {
             throw new IllegalArgumentException("Null details passed to changeDetails.");
         }
@@ -88,6 +89,9 @@ public class AddressBook
             removeDetails(oldKey);
             addDetails(details);
         }
+        int sizeAfter = book.values().size();
+        assert (sizeBefore == sizeAfter);
+        assert consistentSize() : "Inconsistent book size in changeDetails";
     }
     
     /**
