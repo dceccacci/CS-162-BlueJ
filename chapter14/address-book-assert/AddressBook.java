@@ -64,6 +64,7 @@ public class AddressBook
         }
         book.put(details.getName(), details);
         book.put(details.getPhone(), details);
+        book.put(details.getAddress(), details);
         numberOfEntries++;
         assert consistentSize() : "Inconsistent book size in addDetails";
     }
@@ -151,6 +152,7 @@ public class AddressBook
             ContactDetails details = book.get(key);
             book.remove(details.getName());
             book.remove(details.getPhone());
+            book.remove(details.getAddress());
             numberOfEntries--;
         }
         assert !keyInUse(key);
