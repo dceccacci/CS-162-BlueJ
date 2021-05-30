@@ -36,6 +36,13 @@ public class AddressBook
      */
     public ContactDetails getDetails(String key)
     {
+        if(key == null){
+            throw new IllegalArgumentException("null key in getDetails");
+        }
+        if(key.trim().length() == 0) {
+            throw new IllegalArgumentException(
+                                        "Empty key passed to getDetails");
+        }
         return book.get(key);
     }
 
@@ -46,6 +53,13 @@ public class AddressBook
      */
     public boolean keyInUse(String key)
     {
+        if(key == null){
+            throw new IllegalArgumentException("null key in keyInUse");
+        }
+        if(key.trim().length() == 0) {
+            throw new IllegalArgumentException(
+                                        "Empty key passed to keyInUse");
+        }
         return book.containsKey(key);
     }
 
@@ -55,11 +69,29 @@ public class AddressBook
      */
     public void addDetails(ContactDetails details)
     {
-        if(details != null) {
-            book.put(details.getName(), details);
-            book.put(details.getPhone(), details);
-            numberOfEntries++;
+        if(details == null){
+            throw new IllegalArgumentException("null details in addDetails");
         }
+        if(details.getName() == null) {
+            throw new IllegalArgumentException(
+                                    "null Name in details in addDetails");
+        }
+        if(details.getPhone() == null) {
+            throw new IllegalArgumentException(
+                                    "null Phone in details in addDetails");
+        }
+        if(details.getName().trim().length() == 0) {
+            throw new IllegalArgumentException(
+                                    "Empty Name in details in addDetails");
+        }
+        if(details.getPhone().trim().length() == 0) {
+            throw new IllegalArgumentException(
+                                    "Empty Phone in details in addDetails");
+        }
+        
+        book.put(details.getName(), details);
+        book.put(details.getPhone(), details);
+        numberOfEntries++;
     }
     
     /**
@@ -71,10 +103,35 @@ public class AddressBook
     public void changeDetails(String oldKey,
                               ContactDetails details)
     {
-        if(keyInUse(oldKey) && details != null) {
-            removeDetails(oldKey);
-            addDetails(details);
+        if(oldKey == null){
+            throw new IllegalArgumentException("null key in changeDetails");
         }
+        if(oldKey.trim().length() == 0) {
+            throw new IllegalArgumentException(
+                                        "Empty key passed to changeDetails");
+        }
+        if(details == null){
+            throw new IllegalArgumentException("null details in changeDetails");
+        }
+        if(details.getName() == null) {
+            throw new IllegalArgumentException(
+                                    "null Name in details in changeDetails");
+        }
+        if(details.getPhone() == null) {
+            throw new IllegalArgumentException(
+                                    "null Phone in details in changeDetails");
+        }
+        if(details.getName().trim().length() == 0) {
+            throw new IllegalArgumentException(
+                                    "Empty Name in details in changeDetails");
+        }
+        if(details.getPhone().trim().length() == 0) {
+            throw new IllegalArgumentException(
+                                    "Empty Phone in details in changeDetails");
+        }
+
+        removeDetails(oldKey);
+        addDetails(details);
     }
     
     /**
@@ -126,6 +183,13 @@ public class AddressBook
      */
     public void removeDetails(String key)
     {
+        if(key == null){
+            throw new IllegalArgumentException("null key in removeDetails");
+        }
+        if(key.trim().length() == 0) {
+            throw new IllegalArgumentException(
+                                        "Empty key passed to removeDetails");
+        }
         if(keyInUse(key)) {
             ContactDetails details = book.get(key);
             book.remove(details.getName());
