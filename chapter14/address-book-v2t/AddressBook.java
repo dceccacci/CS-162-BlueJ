@@ -75,22 +75,6 @@ public class AddressBook
         if(details == null){
             throw new IllegalArgumentException("null details in addDetails");
         }
-        if(details.getName() == null) {
-            throw new IllegalArgumentException(
-                                    "null Name in details in addDetails");
-        }
-        if(details.getPhone() == null) {
-            throw new IllegalArgumentException(
-                                    "null Phone in details in addDetails");
-        }
-        if(details.getName().trim().length() == 0) {
-            throw new IllegalArgumentException(
-                                    "Empty Name in details in addDetails");
-        }
-        if(details.getPhone().trim().length() == 0) {
-            throw new IllegalArgumentException(
-                                    "Empty Phone in details in addDetails");
-        }
         
         book.put(details.getName(), details);
         book.put(details.getPhone(), details);
@@ -117,22 +101,6 @@ public class AddressBook
         }
         if(details == null){
             throw new IllegalArgumentException("null details in changeDetails");
-        }
-        if(details.getName() == null) {
-            throw new IllegalArgumentException(
-                                    "null Name in details in changeDetails");
-        }
-        if(details.getPhone() == null) {
-            throw new IllegalArgumentException(
-                                    "null Phone in details in changeDetails");
-        }
-        if(details.getName().trim().length() == 0) {
-            throw new IllegalArgumentException(
-                                    "Empty Name in details in changeDetails");
-        }
-        if(details.getPhone().trim().length() == 0) {
-            throw new IllegalArgumentException(
-                                    "Empty Phone in details in changeDetails");
         }
 
         removeDetails(oldKey);
