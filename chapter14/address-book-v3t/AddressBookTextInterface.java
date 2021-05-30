@@ -75,17 +75,28 @@ public class AddressBookTextInterface
     private void change() {
         System.out.print("Type the key of the entry you wish to change.");
         String oldKey = parser.readLine();
+        ContactDetails oldDetails = book.getDetails(oldKey);
         System.out.print("New Name: ");
         String name = parser.readLine();
         System.out.print("New Phone: ");
         String phone = parser.readLine();
         System.out.print("New Address: ");
         String address = parser.readLine();
+        ContactDetails newDetails = new ContactDetails(name, phone, address);
         try {
-            book.changeDetails(oldKey, new ContactDetails(name, phone, address));
+            book.changeDetails(oldKey, newDetails);
         } catch (NoMatchingDetailsException e){
             System.out.println(e);
+            return;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+            return;
         }
+        System.out.println("Changed:");
+        System.out.println(oldDetails);
+        System.out.println("To:");
+        System.out.println(newDetails);
+        
     }
     
     /**
@@ -123,6 +134,8 @@ public class AddressBookTextInterface
             String key = parser.readLine();
             book.removeDetails(key);
         } catch (NoMatchingDetailsException e){
+            System.out.println(e);
+        } catch (IllegalArgumentException e) {
             System.out.println(e);
         }
     }
