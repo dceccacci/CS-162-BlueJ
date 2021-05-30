@@ -82,6 +82,8 @@ public class AddressBook
         if(keyInUse(oldKey)){
             removeDetails(oldKey);
             addDetails(details);
+        } else {
+            throw new NoMatchingDetailsException(oldKey);
         }
     }
     
@@ -142,12 +144,11 @@ public class AddressBook
         if(!keyInUse(key)){
             throw new NoMatchingDetailsException(key);
         }
-        //if(keyInUse(key)) {
-            ContactDetails details = book.get(key);
-            book.remove(details.getName());
-            book.remove(details.getPhone());
-            numberOfEntries--;
-        //}
+        
+        ContactDetails details = book.get(key);
+        book.remove(details.getName());
+        book.remove(details.getPhone());
+        numberOfEntries--;
     }
 
     /**
