@@ -54,9 +54,16 @@ public class AddressBook
      * @param details The details to associate with the person.
      */
     public void addDetails(ContactDetails details)
+                        throws DuplicateKeyException
     {
         if(details == null) {
             throw new IllegalArgumentException("Null details passed to addDetails.");
+        }
+        if(keyInUse(details.getName())){
+            throw new DuplicateKeyException(details.getName());
+        }
+        if(keyInUse(details.getPhone())){
+            throw new DuplicateKeyException(details.getPhone());
         }
         book.put(details.getName(), details);
         book.put(details.getPhone(), details);
@@ -70,8 +77,8 @@ public class AddressBook
      * @param details The replacement details. Must not be null.
      * @throws IllegalArgumentException If either argument is null.
      */
-    public void changeDetails(String oldKey,
-                              ContactDetails details) throws NoMatchingDetailsException
+    public void changeDetails(String oldKey,ContactDetails details) 
+                        throws DuplicateKeyException,NoMatchingDetailsException
     {
         if(details == null) {
             throw new IllegalArgumentException("Null details passed to changeDetails.");

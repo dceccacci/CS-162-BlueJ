@@ -32,7 +32,7 @@ public class AddressBookTextInterface
      * Read a series of commands from the user to interact
      * with the address book. Stop when the user types 'quit'.
      */
-    public void run()
+    public void run() throws DuplicateKeyException
     {
         System.out.println("Address Book.");
         System.out.println("Type 'help' for a list of commands.");
@@ -72,7 +72,7 @@ public class AddressBookTextInterface
     /**
      * Change details of an entry
      */
-    private void change() {
+    private void change() throws DuplicateKeyException {
         System.out.print("Type the key of the entry you wish to change.");
         String oldKey = parser.readLine();
         ContactDetails oldDetails = book.getDetails(oldKey);
@@ -104,13 +104,17 @@ public class AddressBookTextInterface
      */
     private void add()
     {
-        System.out.print("Name: ");
-        String name = parser.readLine();
-        System.out.print("Phone: ");
-        String phone = parser.readLine();
-        System.out.print("Address: ");
-        String address = parser.readLine();
-        book.addDetails(new ContactDetails(name, phone, address));
+        try{
+            System.out.print("Name: ");
+            String name = parser.readLine();
+            System.out.print("Phone: ");
+            String phone = parser.readLine();
+            System.out.print("Address: ");
+            String address = parser.readLine();
+            book.addDetails(new ContactDetails(name, phone, address));
+        } catch (DuplicateKeyException e){
+            System.out.println(e);
+        }
     }
     
     /**

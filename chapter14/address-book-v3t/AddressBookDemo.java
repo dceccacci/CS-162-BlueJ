@@ -16,7 +16,7 @@ public class AddressBookDemo
      * The address book is passed to a GUI to provide
      * a view of the data.
      */
-    public AddressBookDemo()
+    public AddressBookDemo() throws DuplicateKeyException
     {
         ContactDetails[] sampleDetails = {
             new ContactDetails("david",   "08459 100000", "address 1"),
@@ -38,7 +38,7 @@ public class AddressBookDemo
     /**
      * Allow the user to interact with the address book.
      */
-    public void showInterface()
+    public void showInterface() throws DuplicateKeyException
     {
         interaction.run();
     }
