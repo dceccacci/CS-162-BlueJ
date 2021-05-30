@@ -32,6 +32,7 @@ public class AddressBook
      * Look up a name or phone number and return the
      * corresponding contact details.
      * @param key The name or number to be looked up.
+     * @throws IllegalArgumentException if key is invalid.
      * @return The details corresponding to the key.
      */
     public ContactDetails getDetails(String key)
@@ -49,6 +50,7 @@ public class AddressBook
     /**
      * Return whether or not the current key is in use.
      * @param key The name or number to be looked up.
+     * @throws IllegalArgumentException if key is invalid.
      * @return true if the key is in use, false otherwise.
      */
     public boolean keyInUse(String key)
@@ -66,6 +68,7 @@ public class AddressBook
     /**
      * Add a new set of details to the address book.
      * @param details The details to associate with the person.
+     * @throws IllegalArgumentException if details is invalid.
      */
     public void addDetails(ContactDetails details)
     {
@@ -99,6 +102,8 @@ public class AddressBook
      * @param oldKey One of the keys used to store the details.
                      This should be a key that is currently in use.
      * @param details The replacement details.
+     * @throws IllegalArgumentException if details is invalid.
+     * @throws IllegalArgumentException if oldKey is invalid.
      */
     public void changeDetails(String oldKey,
                               ContactDetails details)
@@ -180,6 +185,7 @@ public class AddressBook
      * Remove the entry with the given key from the address book.
      * The key should be one that is currently in use.
      * @param key One of the keys of the entry to be removed.
+     * @throws IllegalArgumentException if key is invalid.
      */
     public void removeDetails(String key)
     {
