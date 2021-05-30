@@ -16,6 +16,7 @@ public class ContactDetails implements Comparable<ContactDetails>
      * @param name The name.
      * @param phone The phone number.
      * @param address The address.
+     * @throw IllegalStateException if both name and phone are empty.
      */
     public ContactDetails(String name, String phone, String address)
     {
@@ -32,6 +33,11 @@ public class ContactDetails implements Comparable<ContactDetails>
         this.name = name.trim();
         this.phone = phone.trim();
         this.address = address.trim();
+        
+        if(this.name.isEmpty() && this.phone.isEmpty()){
+            throw new IllegalStateException(
+                        "Either the name or phone must not be blank.");
+        }
     }
     
     /**
