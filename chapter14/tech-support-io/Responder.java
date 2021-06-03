@@ -127,7 +127,8 @@ public class Responder
             String response = reader.readLine();
             while(response != null) {
                 defaultResponses.add(response);
-                response = reader.readLine();
+                response = reader.readLine(); // blank line
+                response = reader.readLine(); 
             }
         }
         catch(FileNotFoundException e) {
