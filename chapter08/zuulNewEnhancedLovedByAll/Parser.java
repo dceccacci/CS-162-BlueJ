@@ -1,5 +1,8 @@
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.io.*;
+import java.util.Iterator;
 
 /**
  * This class is part of the "World of Zuul" application. 
@@ -21,6 +24,7 @@ public class Parser
 {
     private CommandWords commands;  // holds all valid command words
     private Scanner reader;         // source of command input
+    private List<String> inputList;
 
     /**
      * Create a parser to read from the terminal window.
@@ -29,6 +33,7 @@ public class Parser
     {
         commands = new CommandWords();
         reader = new Scanner(System.in);
+        inputList = new ArrayList<String>();
     }
 
     /**
@@ -57,6 +62,10 @@ public class Parser
                 // note: we just ignore the rest of the input line.
             }
         }
+        inputList.add(inputLine); // add inputs to List
+        if(word1.equals("quit")){
+            createFile();
+        }
 
         return new Command(commands.getCommandWord(word1), word2, word3);
     }
@@ -67,5 +76,28 @@ public class Parser
     public void showCommands()
     {
         commands.showAll();
+    }
+    
+    public boolean createFile()
+    {
+        boolean success = false;
+        System.out.print("Creating file for user inputs: ");
+        if(inputList != null) {
+            try (FileWriter writer = new FileWriter("userInputs")) {
+                Iterator<String> it = inputList.iterator();
+                while (it.hasNext()){
+                    writer.write(it.next().toString());
+                    writer.write("\n");
+                }
+                writer.close();
+                success = true;
+            }
+            catch(IOException e) {
+                System.err.println("There was a problem writing to \"userInputs\"");
+            }
+                
+        }
+        System.out.print(success + "\n");
+        return success;
     }
 }

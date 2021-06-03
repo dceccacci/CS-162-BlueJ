@@ -190,4 +190,19 @@ public class AddressBook
         int actualCount = uniqueEntries.size();
         return numberOfEntries == actualCount;
     }
+    
+    /**
+     * Checks to make sure that the multiple entries have the same info.
+     */
+    private boolean consistentDetails(ContactDetails details)
+    {
+        ContactDetails nameDetails = getDetails(details.getName());
+        ContactDetails phoneDetails = getDetails(details.getPhone());
+        if(nameDetails.getName() == phoneDetails.getName() &&
+            nameDetails.getPhone() == phoneDetails.getPhone()) 
+        {
+                return true;
+        }
+        return false;
+    }
 }

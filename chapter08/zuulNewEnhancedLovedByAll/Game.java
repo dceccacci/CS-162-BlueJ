@@ -82,8 +82,7 @@ public class Game
         cellar.setExits("up", outside);
         teleporter.setExits("south", outside);
         
-        Item bell, flashlight, bucket, anvil, cookie, beamer, key,
-            umbrella;
+        Item bell, flashlight, bucket, anvil, cookie, beamer, key,umbrella;
         
         // create the items
         bell = new Item("bell", 80, "a large brass bell");
