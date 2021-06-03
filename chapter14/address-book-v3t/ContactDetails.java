@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Name, address and telephone number details.
  * 
@@ -8,7 +11,8 @@ public class ContactDetails implements Comparable<ContactDetails>
 {
     private String name;
     private String phone;
-    private String address;
+    private List<String> addressList = new ArrayList<String>();
+    private int listSize;
 
     /**
      * Set up the contact details. All details are trimmed to remove
@@ -30,15 +34,18 @@ public class ContactDetails implements Comparable<ContactDetails>
         if(address == null) {
             address = "";
         }
+        addressList.add(address.trim());
+        listSize = 1;
 
         this.name = name.trim();
         this.phone = phone.trim();
-        this.address = address.trim();
 
         if(this.name.isEmpty() && this.phone.isEmpty()) {
             throw new IllegalStateException(
                       "Either the name or phone must not be blank.");
         }
+        assert(addressList.get(0).equals(address));
+        assert(addressList.size() == listSize);
     }
     
     /**
@@ -58,11 +65,17 @@ public class ContactDetails implements Comparable<ContactDetails>
     }
 
     /**
-     * @return The address.
+     * @return The address at paramater index
      */
-    public String getAddress()
+    public String getAddress(int index)
     {
-        return address;
+        return addressList.get(index);
+    }
+    
+    public void addAddress(String address){
+        addressList.add(address);
+        listSize++;
+        assert(addressList.size() == listSize);
     }
     
     /**
@@ -77,7 +90,7 @@ public class ContactDetails implements Comparable<ContactDetails>
             ContactDetails otherDetails = (ContactDetails) other;
             return name.equals(otherDetails.getName()) &&
                     phone.equals(otherDetails.getPhone()) &&
-                     address.equals(otherDetails.getAddress());
+                     getAddress(0).equals(otherDetails.getAddress(0));
         }
         else {
             return false;
@@ -102,7 +115,7 @@ public class ContactDetails implements Comparable<ContactDetails>
         if(comparison != 0){
             return comparison;
         }
-        return address.compareTo(otherDetails.getAddress());
+        return getAddress(0).compareTo(otherDetails.getAddress(0));
     }
 
     /**
@@ -110,8 +123,13 @@ public class ContactDetails implements Comparable<ContactDetails>
      */
     public String toString()
     {
-        return name + "\n" + phone + "\n" + address;
+        String addressString = "";
+        for(int i = 0; i < addressList.size(); i++){
+            addressString = addressString + addressList.get(i) +"\n" ;
+        }
+        return name + "\n" + phone + "\n" + addressString;
     }
+    
 
     /**
      * Compute a hashcode using the rules to be found in
@@ -123,7 +141,7 @@ public class ContactDetails implements Comparable<ContactDetails>
         int code = 17;
         code = 37 * code + name.hashCode();
         code = 37 * code + phone.hashCode();
-        code = 37 * code + address.hashCode();
+        code = 37 * code + getAddress(0).hashCode();
         return code;
     }
 }
