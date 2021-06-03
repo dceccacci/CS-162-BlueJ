@@ -127,8 +127,15 @@ public class Responder
             String response = reader.readLine();
             while(response != null) {
                 defaultResponses.add(response);
-                response = reader.readLine(); // blank line
-                response = reader.readLine(); 
+                response = reader.readLine();
+                if (response != null) { 
+                    if (response.isBlank()) {     // if line is blank
+                        response = reader.readLine();   // grab next line
+                    } else if (reader.readLine() != null) {
+                        // if the next line isnt null then it will combine lines
+                        response = response + " " + reader.readLine();
+                    }
+                }
             }
         }
         catch(FileNotFoundException e) {
