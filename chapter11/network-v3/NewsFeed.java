@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.*;
+import java.nio.file.Path;
 
 /**
  * The NewsFeed class stores news posts for the news feed in a
@@ -45,5 +47,14 @@ public class NewsFeed
             post.display();
             System.out.println();   // empty line between posts
         }
+    }
+    
+    public void saveToFile(Post post) throws IOException
+    {
+        String fileName = post.getUsername() + Long.toString(post.getTimeStamp());
+        ObjectOutputStream os = new ObjectOutputStream(
+                                    new FileOutputStream(fileName));
+        os.writeObject(post);
+        os.close();
     }
 }

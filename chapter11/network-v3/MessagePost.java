@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * This class stores information about a post in a social network news feed. 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Michael Kölling and David J. Barnes
  * @version 0.3
  */
-public class MessagePost extends Post
+public class MessagePost extends Post implements Serializable
 {
     private String message;  // an arbitrarily long, multi-line message
 

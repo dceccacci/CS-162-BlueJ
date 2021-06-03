@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * This class stores information about a news feed post in a 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Michael Kölling and David J. Barnes
  * @version 0.3
  */
-public class Post 
+public class Post implements Serializable
 {
     private String username;  // username of the post's author
     private long timestamp;
@@ -26,6 +27,10 @@ public class Post
         timestamp = System.currentTimeMillis();
         likes = 0;
         comments = new ArrayList<>();
+    }
+    
+    public String getUsername(){
+        return username;
     }
 
     /**

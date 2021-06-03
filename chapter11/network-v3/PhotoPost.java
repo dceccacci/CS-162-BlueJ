@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * This class stores information about a post in a social network news feed.
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Michael Kölling and David J. Barnes
  * @version 0.3
  */
-public class PhotoPost extends Post
+public class PhotoPost extends Post implements Serializable
 {
     private String filename;  // the name of the image file
     private String caption;   // a one line image caption
