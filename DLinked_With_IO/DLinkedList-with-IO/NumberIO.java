@@ -79,8 +79,8 @@ public class NumberIO
     public List<Integer> getFromDLL(DLinkedList<Integer> dlist){
         List<Integer> tmpList = new ArrayList<Integer>();
         for(int i = 0; i < dlist.size(); i++){
-            Node<Integer> node = dlist.get(i);
-            Integer tmpNum = node.getData();
+            //Node<Integer> node = dlist.get(i);
+            Integer tmpNum = dlist.get(i).getData();//node.getData();
             tmpList.add(tmpNum);
         }
         return tmpList;

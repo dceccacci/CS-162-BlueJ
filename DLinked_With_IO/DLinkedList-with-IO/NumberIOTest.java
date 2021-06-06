@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class NumberIOTest
 {
     private NumberIO NIO;
-    private static final String FILE_LOCATION = "FINAL_TEST_NUMBERS.txt";
+    private static final String FILE_LOCATION = "test_numbers.txt";
     private static final List<Integer> DEFAULT_LIST = new ArrayList<Integer>(
                             List.of(1, 2, 3, 4, 5, 6, 7, 8, 9));
 
